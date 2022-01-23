@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     //Flags
     private int Flag1;
+    private int FlagMove;
 
 
     void Start()
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
         loseTextObject.SetActive(false);
 
         Flag1 = 0;
+        FlagMove = 0;
     }
 
 
@@ -70,6 +72,8 @@ public class PlayerController : MonoBehaviour
 
             musicSource2.clip = musicClipTwo;
             musicSource2.Play();
+
+            FlagMove = 1;
         }
 
         if (Input.GetKey(KeyCode.R))
@@ -88,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Flag1 == 0)
+        if ((Flag1 == 0) && (FlagMove == 1))
         {
             Vector2 position = rigidbody2d.position;
             position.x = position.x + speed * horizontal * Time.deltaTime;
